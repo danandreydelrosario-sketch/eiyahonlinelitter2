@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For Eiyah ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    #login {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    input {
+      padding: 12px;
+      width: 230px;
+      border: none;
+      border-radius: 10px;
+      margin: 10px;
+      outline: none;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background: #ff5e78;
+      color: white;
+      cursor: pointer;
+    }
+
+    #main {
+      display: none;
+      padding: 20px;
+      animation: fadeIn 1.5s ease;
+    }
+
+    h1 { color: white; }
+    .sub { color: white; margin-top: -10px; }
+
+    .icons { margin: 20px; }
+
+    .icon {
+      font-size: 45px;
+      margin: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .icon:hover { transform: scale(1.2); }
+
+    .content {
+      display: none;
+      background: rgba(255,255,255,0.25);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 650px;
+      margin: auto;
+      animation: fadeIn 1s ease;
+    }
+
+    img {
+      width: 100%;
+      max-width: 260px;
+      margin: 10px;
+      border-radius: 15px;
+      transition: 0.3s;
+    }
+
+    img:hover { transform: scale(1.05); }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      color: pink;
+      font-size: 18px;
+      animation: floatUp 5s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% {transform: translateY(0); opacity: 1;}
+      100% {transform: translateY(-100vh); opacity: 0;}
+    }
+
+    @media (max-width: 600px) {
+      .content { width: 90%; }
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="login">
+  <h2>Enter Password 💌</h2>
+  <input type="password" id="pass" placeholder="Password">
+  <button onclick="login()">Enter</button>
+  <p id="error" style="color:white;"></p>
+</div>
+
+<div id="main">
+  <h1>For Eiyah ❤️</h1>
+  <p class="sub">from Andrey</p>
+
+  <div class="icons">
+    <span class="icon" onclick="showImages()">🖼️</span>
+    <span class="icon" onclick="showLetter()">✉️</span>
+  </div>
+
+  <div id="images" class="content">
+    <h2>Memories</h2>
+    <img src="file_00000000c7ec720898131d56d2d96287.jfif">
+    <img src="file_0000000074bc720893c60da5f376e2b0.jfif">
+  </div>
+
+  <div id="letter" class="content">
+    <h2>Dear Eiyah…</h2>
+    <p id="text" style="text-align:left; line-height:1.6;"></p>
+  </div>
+</div>
+
+<script>
+const password = "05191227";
+
+function login() {
+  let input = document.getElementById("pass").value;
+  if (input === password) {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("main").style.display = "block";
+    hearts();
+  } else {
+    document.getElementById("error").innerText = "Wrong password";
+  }
+}
+
+function showImages() {
+  document.getElementById("images").style.display = "block";
+  document.getElementById("letter").style.display = "none";
+}
+
+function showLetter() {
+  document.getElementById("letter").style.display = "block";
+  document.getElementById("images").style.display = "none";
+  typeLetter();
+}
+
+const letter = `Eiyah,
+
+You didn’t just become my best friend… you became someone I never expected to mean this much to me.
+
+Every laugh, every talk, every simple moment with you stayed with me.
+
+You became my comfort. My peace. My favorite person.
+
+And I don’t want to lose you.
+
+Not just as someone special…
+but as my best friend.
+
+Always,
+Andrey ❤️`;
+
+function typeLetter() {
+  let i = 0;
+  let text = document.getElementById("text");
+  text.innerHTML = "";
+
+  function typing() {
+    if (i < letter.length) {
+      text.innerHTML += letter.charAt(i);
+      i++;
+      setTimeout(typing, 15);
+    }
+  }
+  typing();
+}
+
+function hearts() {
+  setInterval(() => {
+    let h = document.createElement("div");
+    h.classList.add("heart");
+    h.innerHTML = "❤️";
+    h.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 5000);
+  }, 250);
+}
+</script>
+
+</body>
+</html>
